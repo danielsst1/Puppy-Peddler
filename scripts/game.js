@@ -1,4 +1,4 @@
-var currentMoney = 100;
+var currentMoney = 1000;
 var currentDogs = 0;
 
 //day that is displayed on screen: starts at 1
@@ -155,11 +155,11 @@ function display() {
 //function to buy stuff given index
 function buy(index) {
     var id = "input" + index.toString();
-    var quantity = parseInt(document.getElementById(id).value);
+    var quantity = 1;//parseInt(document.getElementById(id).value);
     var cost = dogs[index].buy(quantity, stockDay, currentMoney);
     currentMoney -= cost;
     //clear input
-    document.getElementById(id).value = '';
+    //document.getElementById(id).value = '';
 
     display();
 }
@@ -167,11 +167,11 @@ function buy(index) {
 //function to sell stuff given index
 function sell(index) {
     var id = "input" + index.toString();
-    var quantity = parseInt(document.getElementById(id).value);
+    var quantity = 1;//parseInt(document.getElementById(id).value);
     var cost = dogs[index].sell(quantity, stockDay);
     currentMoney += cost;
     //clear input
-    document.getElementById(id).value = '';
+    //document.getElementById(id).value = '';
 
     display();
 }

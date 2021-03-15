@@ -70,7 +70,7 @@ class Dog {
         this.quantity += quantity;
 
         //display stuff on change
-        currentDogs += this.quantity;
+        currentDogs += quantity;
         display();
         return value;
     }
@@ -84,7 +84,7 @@ class Dog {
         var value = quantity * this.dailyValue(numDay);
 
         //display stuff on change
-        currentDogs -= this.quantity;
+        currentDogs -= quantity;
         display();
         return value;
     }
@@ -122,10 +122,10 @@ function nextDay() {
     console.log("current day: " + displayDay);
 }
 
-//functions to display on page
+//function to display on page
 function display() {
     document.getElementById("dogs"). innerHTML = currentDogs;
-    document.getElementById("money"). innerHTML = currentMoney;
+    document.getElementById("money"). innerHTML = currentMoney.toFixed(2);
     document.getElementById("day"). innerHTML = displayDay;
 
     //display dogs
@@ -142,6 +142,30 @@ function display() {
         document.getElementById(val). innerHTML = dogs[i].dailyValue(stockDay);
         document.getElementById(quant). innerHTML = dogs[i].getQuantity();
     }
+}
+
+//function to buy stuff given index
+function buy(index) {
+    var id = "input" + index.toString();
+    var quantity = parseInt(document.getElementById(id).value);
+    var cost = dogs[index].buy(quantity, stockDay, currentMoney);
+    currentMoney -= cost;
+    //clear input
+    document.getElementById(id).value = '';
+
+    display();
+}
+
+//function to sell stuff given index
+function sell(index) {
+    var id = "input" + index.toString();
+    var quantity = parseInt(document.getElementById(id).value);
+    var cost = dogs[index].sell(quantity, stockDay);
+    currentMoney += cost;
+    //clear input
+    document.getElementById(id).value = '';
+
+    display();
 }
 
 display();

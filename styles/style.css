@@ -26,9 +26,10 @@ body {
 .e,
 .f,
 .g {
-  background-color: rgba(255, 0, 0, 0.2);
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 10px;
-  border: 1px solid red;
+  border: 1px solid #ccc;
   border-radius: 10px;
   z-index: inherit;
 }
@@ -63,6 +64,7 @@ body {
 
 .wrapper {
   z-index: 1;
+  padding: 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(100px, auto);

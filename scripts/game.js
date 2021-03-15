@@ -139,14 +139,14 @@ function display() {
     //display dogs
     //document.getElementById("dog1"). innerHTML = dogs[1].dailyValue(stockDay);
     
-    var dogName = "dogName";
+    //var dogName = "dogName";
     var dogVal = "dogValue";
     var dogQ = "dogQuantity";
     for (var i = 0; i < dogs.length; i++) {
-        var name = dogName + i.toString();
+        //ar name = dogName + i.toString();
         var val = dogVal + i.toString();
         var quant = dogQ + i.toString();
-        document.getElementById(name). innerHTML = dogs[i].getName();
+        //document.getElementById(name). innerHTML = dogs[i].getName();
         document.getElementById(val). innerHTML = dogs[i].dailyValue(stockDay);
         document.getElementById(quant). innerHTML = dogs[i].getQuantity();
     }

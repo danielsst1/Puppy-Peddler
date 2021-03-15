@@ -38,14 +38,16 @@ dogTypes[1] = "Pomeranian";
 dogTypes[2] = "Dachshund";
 dogTypes[3] = "Corgi";
 
-
+let stage = null;
 //console.log(dog1);
 
 class Dog {
-    constructor(name, values) {
+    constructor(id, name, values) {
+        this.id = id;
         this.name = name;
         this.values = values;
         this.quantity = 0;
+        this.sprites = [];
     }
     //return name of the breed
     getName() {
@@ -68,6 +70,9 @@ class Dog {
             return 0;
         }
         this.quantity += quantity;
+        // update stage
+        const sprite = stage.createSprite(this.id);
+        this.sprites.push(sprite);
 
         //display stuff on change
         currentDogs += quantity;
@@ -82,6 +87,9 @@ class Dog {
         }
         this.quantity -= quantity;
         var value = quantity * this.dailyValue(numDay);
+        // update stage
+        const sprite = this.sprites.pop();
+        stage.removeSprite(sprite);
 
         //display stuff on change
         currentDogs -= quantity;
@@ -95,10 +103,10 @@ class Dog {
 let dogs = new Array(4);
 
 for (i = 0; i < dogs.length; i++) {
-    dogs[i] = new Dog(dogTypes[i], dogValues[i]);
+    dogs[i] = new Dog(i, dogTypes[i], dogValues[i]);
 }
 
-let pup1 = new Dog("pup1", dogValues[1]);
+let pup1 = new Dog(i, "pup1", dogValues[1]);
 console.log("quantity: " + pup1.getQuantity());
 console.log("cost on day 0: " + pup1.dailyValue(0));
 console.log("Cost of buy 3 and buy 3: " + pup1.buy(3, 0, 90));
@@ -168,10 +176,8 @@ function sell(index) {
     display();
 }
 
-display();
-//var intervalID = window.setInterval(display(), 500);
-
-
 window.onload = () => {
-    const stage = new Stage();
+    stage = new Stage();
+    display();
 }
+//var intervalID = window.setInterval(display(), 500);

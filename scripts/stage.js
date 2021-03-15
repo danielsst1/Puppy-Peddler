@@ -21,7 +21,7 @@ class Stage {
 
     doneLoading() {
         this.createSpriteSheet();
-        this.createSprite();
+        //this.createSprite();
         this.gameLoop = this.gameLoop.bind(this);
         this.app.ticker.add(this.gameLoop);
     }
@@ -33,45 +33,48 @@ class Stage {
         ssheet.scaleMode = PIXI.SCALE_MODES.NEAREST;
         const W = 25;
         const H = 19;
-        this.spriteSheet["sit"] = [
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(0, 1, W, H))
-        ];
-        this.spriteSheet["idle"] = [
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 1, 0, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 2, 0, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 3, 0, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 4, 0, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(0, H, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W, H, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 2, H, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 3, H, W, H))
-        ];
-        this.spriteSheet["run"] = [
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 4, H, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(0, H * 2, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W, H * 2, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 2, H * 2, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 3, H * 2, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 4, H * 2, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(0, H * 3, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W, H * 3, W, H))
-        ];
-        this.spriteSheet["pee"] = [
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 2, H * 3, W, H))
-        ];
-        this.spriteSheet["lay"] = [
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 3, H * 3, W, H))
-        ];
-        this.spriteSheet["walk"] = [
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 4, H * 3, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(0, H * 4, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W, H * 4, W, H)),
-            new PIXI.Texture(ssheet, new PIXI.Rectangle(W * 2, H * 4, W, H)),
-        ];
+        const OFFSET = W * 5;
+        for (let i = 0, offset = 0; i < 4; i++, offset += OFFSET) {
+            this.spriteSheet[`sit-${i}`] = [
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset, 1, W, H))
+            ];
+            this.spriteSheet[`idle-${i}`] = [
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 1, 0, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 2, 0, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 3, 0, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 4, 0, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + 0, H, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W, H, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 2, H, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 3, H, W, H))
+            ];
+            this.spriteSheet[`run-${i}`] = [
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 4, H, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + 0, H * 2, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W, H * 2, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 2, H * 2, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 3, H * 2, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 4, H * 2, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + 0, H * 3, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W, H * 3, W, H))
+            ];
+            this.spriteSheet[`pee-${i}`] = [
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 2, H * 3, W, H))
+            ];
+            this.spriteSheet[`lay-${i}`] = [
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 3, H * 3, W, H))
+            ];
+            this.spriteSheet[`walk${i}`] = [
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 4, H * 3, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + 0, H * 4, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W, H * 4, W, H)),
+                new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 2, H * 4, W, H)),
+            ];
+        }
     }
 
-    createSprite() {
-        const doggy = new PIXI.AnimatedSprite(this.spriteSheet.idle);
+    createSprite(id = 0) {
+        const doggy = new PIXI.AnimatedSprite(this.spriteSheet[`idle-${id}`]);
         // basic setting
         doggy.anchor.set(0.5);
         doggy.scale.set(4);
@@ -116,6 +119,11 @@ class Stage {
             .on('touchmove', onDragMove);
         this.app.stage.addChild(doggy);
         doggy.play();
+        return doggy;
+    }
+
+    removeSprite(sprite) {
+        this.app.stage.removeChild(sprite);
     }
 
     gameLoop() { }

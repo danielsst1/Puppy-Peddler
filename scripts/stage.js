@@ -1,17 +1,14 @@
+const genRandomFloat = (min, max) => (Math.random() * (max - min) + min);
+
 class Stage {
     constructor() {
         // init PIXI app
         this.app = new PIXI.Application({
-            width: 800,
-            height: 600,
             backgroundColor: 0x1099bb,
-            resolution: 1,
-            resizeTo: window
+            resolution: 1
         });
-        document.body.appendChild(this.app.view);
-
-        // init UI
-        //document.body.appendChi
+        const container = document.querySelector('.c');
+        container.appendChild(this.app.view);
 
         // loading textures
         this.app.loader.add("doggy", "./assets/sprites/doggy.png");
@@ -73,14 +70,15 @@ class Stage {
         }
     }
 
-    createSprite(id = 0) {
+    createSprite(id) {
         const doggy = new PIXI.AnimatedSprite(this.spriteSheet[`idle-${id}`]);
+        doggy.state = 'idle';
         // basic setting
         doggy.anchor.set(0.5);
         doggy.scale.set(4);
         doggy.animationSpeed = .2;
-        doggy.x = Math.random() * this.app.view.width;
-        doggy.y = Math.random() * 500;
+        doggy.x = genRandomFloat(50, this.app.view.width - 50);
+        doggy.y = genRandomFloat(50, this.app.view.height - 50);
         // drag drop
         doggy.interactive = true;
         doggy.buttonMode = true;
@@ -118,6 +116,7 @@ class Stage {
             .on('mousemove', onDragMove)
             .on('touchmove', onDragMove);
         this.app.stage.addChild(doggy);
+        console.log(this.app.stage);
         doggy.play();
         return doggy;
     }

@@ -17,11 +17,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: "VT323", monospace;
+  background-color: #1099bb;
 }
 
 .a,
 .b,
-.c,
 .d,
 .e,
 .f,
@@ -44,6 +44,7 @@ body {
 
 .c {
   grid-area: c;
+  position: relative;
 }
 
 .d {
@@ -78,7 +79,8 @@ body {
 }
 
 canvas {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
 }

@@ -1,0 +1,82 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  min-height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: "VT323", monospace;
+}
+
+.a,
+.b,
+.c,
+.d,
+.e,
+.f,
+.g {
+  background-color: rgba(255, 0, 0, 0.2);
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 10px;
+  z-index: inherit;
+}
+
+.a {
+  grid-area: a;
+}
+
+.b {
+  grid-area: b;
+}
+
+.c {
+  grid-area: c;
+}
+
+.d {
+  grid-area: d;
+}
+
+.e {
+  grid-area: e;
+}
+
+.f {
+  grid-area: f;
+}
+
+.g {
+  grid-area: g;
+}
+
+.wrapper {
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  column-gap: 10px;
+  row-gap: 1em;
+  grid-template-areas:
+    "a a b d"
+    "c c c e"
+    "c c c f"
+    "c c c g";
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}

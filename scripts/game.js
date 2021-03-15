@@ -172,3 +172,6 @@ display();
 //var intervalID = window.setInterval(display(), 500);
 
 
+window.onload = () => {
+    const stage = new Stage();
+}

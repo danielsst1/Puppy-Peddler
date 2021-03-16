@@ -1,4 +1,4 @@
-var currentMoney = 1000;
+var currentMoney = 2000;
 var currentDogs = 0;
 
 var totalBuys = 0;

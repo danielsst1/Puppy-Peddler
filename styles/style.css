@@ -25,7 +25,8 @@ body {
 .d,
 .e,
 .f,
-.g {
+.g,
+.h {
   font-size: 20px;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 10px;
@@ -63,6 +64,10 @@ body {
   grid-area: g;
 }
 
+.h {
+  grid-area: h;
+} 
+
 .wrapper {
   z-index: 1;
   padding: 10px;
@@ -72,10 +77,10 @@ body {
   column-gap: 10px;
   row-gap: 1em;
   grid-template-areas:
-    "a a b d"
-    "c c c e"
+    "a b d e"
     "c c c f"
-    "c c c g";
+    "c c c g"
+    "c c c h";
 }
 
 canvas {

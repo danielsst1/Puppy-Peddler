@@ -1,12 +1,36 @@
 var currentMoney = 1000;
 var currentDogs = 0;
 
+var totalBuys = 0;
+var totalSells = 0;
+var totalValue = 0;
+
 //day that is displayed on screen: starts at 1
 var displayDay = 1;
 //day that is used in stock calculations: starts at 0
 var stockDay = 0;
 //last day listed in stocks
 var lastStockDay = 29;
+
+//opinions for next day
+var negBroadcast = new Array(6);
+negBroadcast[0] = "Public Opinion :  shed too much";
+negBroadcast[1] = "Public Opinion :  eat too many snacks";
+negBroadcast[2] = "News Alert     :  steal sandwichs from local deli";
+negBroadcast[3] = "News Alert     :  desecrate local fire hydrants";
+negBroadcast[4] = "Research Report:  are 10% more likely to eat homework than others";
+negBroadcast[5] = "Research Report:  only love you when fed";
+
+var posBroadcast = new Array(6);
+posBroadcast[0] = "Public Opinion :  are cuter than ever";
+posBroadcast[1] = "Public Opinion :  are great walking buddies";
+posBroadcast[2] = "News Alert     :  save a drowning child";
+posBroadcast[3] = "News Alert     :  sniff out burried treasure";
+posBroadcast[4] = "Research Report:  proven to make people happier";
+posBroadcast[5] = "Research Report:  can be potty trained";
+
+//position that dog name should be at
+var dogPos = 17;
 
 //array of dog stock values
 let dogValues = new Array(4);
@@ -116,6 +140,41 @@ console.log("cost on day 1: " + pup1.dailyValue(1));
 console.log("Cost of sell 2 and sell 2: " + pup1.sell(2, 1));
 console.log("quantity: " + pup1.getQuantity());
 
+//get the news given day to be forecasted and dog index
+function getNews(day, dogIndex) {
+	var message;
+	if(dogs[dogIndex].dailyValue(day) >= dogs[dogIndex].dailyValue(day - 1)) {
+		console.log("pos: " + dogs[dogIndex].dailyValue(day) + ", " + dogs[dogIndex].dailyValue(day - 1));
+		message = posBroadcast[Math.floor(Math.random() * posBroadcast.length)];
+	}
+	else {
+		console.log("neg: " + dogs[dogIndex].dailyValue(day) + ", " + dogs[dogIndex].dailyValue(day - 1));
+		message = negBroadcast[Math.floor(Math.random() * negBroadcast.length)];
+		
+	}
+	message = message.slice(0, dogPos) + dogs[dogIndex].getName() + "s" + message.slice(dogPos);
+	return message;
+}
+
+//returns news projecting random dog value for given day
+function displayNews(day) {
+	if (day < 1 || day > lastStockDay) {
+		return;
+	}
+	var dog1 = Math.floor(Math.random() * dogs.length);
+	var dog2 = dog1;
+	while (dog1 == dog2) {
+		dog2 = Math.floor(Math.random() * dogs.length);
+	}
+
+	//get messages for both dogs
+	var forecast1 = getNews(day, dog1); 
+	var forecast2 = getNews(day, dog2);
+
+	//display messages
+	document.getElementById("forecast1"). innerHTML = forecast1;
+	document.getElementById("forecast2"). innerHTML = forecast2;
+}
 
 //iterates day by 1
 //if day has gone past lastStockDay then set to last stock day
@@ -135,6 +194,8 @@ function display() {
     document.getElementById("dogs"). innerHTML = currentDogs;
     document.getElementById("money"). innerHTML = currentMoney.toFixed(2);
     document.getElementById("day"). innerHTML = displayDay;
+
+    displayNews(displayDay);
 
     //display dogs
     //document.getElementById("dog1"). innerHTML = dogs[1].dailyValue(stockDay);
@@ -178,6 +239,7 @@ function sell(index) {
 
 window.onload = () => {
     stage = new Stage();
+    displayNews(1);
     display();
 }
 //var intervalID = window.setInterval(display(), 500);

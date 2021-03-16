@@ -35,8 +35,12 @@ body {
   grid-area: a;
 }
 
-.date {
+.forecasts {
   grid-area: b;
+}
+
+.date {
+  grid-area: i;
 }
 
 .canvas-container {
@@ -60,6 +64,7 @@ body {
   grid-area: g;
 }
 
+
 .wrapper {
   z-index: 1;
   padding: 10px;
@@ -69,7 +74,7 @@ body {
   column-gap: 10px;
   row-gap: 1em;
   grid-template-areas:
-    "a a b x"
+    "a b b i"
     "c c c d"
     "c c c e"
     "c c c f"

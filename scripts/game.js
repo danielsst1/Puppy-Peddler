@@ -200,6 +200,7 @@ function nextDay() {
     }
     displayDay = stockDay + 1;
     updateCharts(displayDay);
+    displayNews(displayDay);
     display()
     console.log("current day: " + displayDay);
 }
@@ -210,7 +211,7 @@ function display() {
     document.getElementById("money"). innerHTML = currentMoney.toFixed(2);
     document.getElementById("day"). innerHTML = displayDay;
 
-    displayNews(displayDay);
+    // displayNews(displayDay);
 
     //display dogs
     //document.getElementById("dog1"). innerHTML = dogs[1].dailyValue(stockDay);

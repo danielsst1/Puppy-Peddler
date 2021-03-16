@@ -103,6 +103,7 @@ canvas {
 
 }
 .dog-icon {
+  display: inline-block;
   grid-column: 1;
   background-image: url('../assets/sprites/doggy.png');
   width: 25px;

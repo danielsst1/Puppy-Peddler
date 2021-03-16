@@ -65,6 +65,20 @@ dogTypes[3] = "Corgi";
 let stage = null;
 //console.log(dog1);
 
+const buyButtons = [
+    document.querySelector(`.dog-container--${0} .dog-button--buy`),
+    document.querySelector(`.dog-container--${1} .dog-button--buy`),
+    document.querySelector(`.dog-container--${2} .dog-button--buy`),
+    document.querySelector(`.dog-container--${3} .dog-button--buy`)
+];
+
+const sellButtons = [
+    document.querySelector(`.dog-container--${0} .dog-button--sell`),
+    document.querySelector(`.dog-container--${1} .dog-button--sell`),
+    document.querySelector(`.dog-container--${2} .dog-button--sell`),
+    document.querySelector(`.dog-container--${3} .dog-button--sell`)
+];
+
 class Dog {
     constructor(id, name, values) {
         this.id = id;
@@ -152,7 +166,7 @@ function getNews(day, dogIndex) {
 		message = negBroadcast[Math.floor(Math.random() * negBroadcast.length)];
 		
 	}
-	message = message.slice(0, dogPos) + dogs[dogIndex].getName() + "s" + message.slice(dogPos);
+	message = `${ message.slice(0, dogPos)}<div class="dog-icon dog-icon--${dogIndex}"></div>${message.slice(dogPos)}`;
 	return message;
 }
 
@@ -208,8 +222,10 @@ function display() {
         var val = dogVal + i.toString();
         var quant = dogQ + i.toString();
         //document.getElementById(name). innerHTML = dogs[i].getName();
-        document.getElementById(val). innerHTML = dogs[i].dailyValue(stockDay);
+        document.getElementById(val). innerHTML = dogs[i].dailyValue(stockDay).toFixed(2);
         document.getElementById(quant). innerHTML = dogs[i].getQuantity();
+        buyButtons[i].disabled = dogs[i].dailyValue(stockDay) > currentMoney;
+        sellButtons[i].disabled = dogs[i].quantity <= 0;
     }
 }
 

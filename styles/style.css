@@ -106,18 +106,22 @@ canvas {
 /* dog contaienr */
 .dog-container {
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 24px;
 
   display: grid;
   grid-template-columns: repeat(4, 30px);
-  grid-gap: 10px;
+  grid-row-gap: 5px;
+  grid-column-gap: 12px;
   justify-content: center;
   justify-items: stretch;
   align-items: center;
-
+}
+.dog-chart {
+  grid-column: 1 / -1;
+  height: 30px;
 }
 .dog-icon {
   display: inline-block;
@@ -197,4 +201,9 @@ button:active {
 
 .green {
   color: #06693A;
+}
+
+.line {
+  stroke: steelblue;
+  fill: none;
 }

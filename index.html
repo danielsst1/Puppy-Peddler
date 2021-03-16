@@ -37,10 +37,11 @@
         <p>
           Day: <span id="day"></span> / 30
         </p>
-        <button onclick="nextDay()">Next Day</button> 
+        <button id="nextDayButton" onclick="nextDay()">Next Day</button>
       </div>
       <div class="canvas-container"></div>
       <div class="dog-container dog-container--0">
+        <svg class="dog-chart dog-chart--0"></svg>
         <div class="dog-icon dog-icon--0"></div>
         <p class="dog-price">
             <span id="dogValueSign0">$</span><span id="dogValue0"></span>
@@ -54,6 +55,7 @@
       </div>
 
       <div class="dog-container dog-container--1">
+        <svg class="dog-chart dog-chart--1"></svg>
         <div class="dog-icon dog-icon--1"></div>
         <p class="dog-price">
             <span id="dogValueSign1">$</span><span id="dogValue1"></span>
@@ -67,6 +69,7 @@
       </div>
 
       <div class="dog-container dog-container--2">
+        <svg class="dog-chart dog-chart--2"></svg>
         <div class="dog-icon dog-icon--2"></div>
         <p class="dog-price">
           <span id="dogValueSign2">$</span><span id="dogValue2"></span>
@@ -80,6 +83,7 @@
       </div>
 
       <div class="dog-container dog-container--3">
+        <svg class="dog-chart dog-chart--3"></svg>
         <div class="dog-icon dog-icon--3"></div>
         <p class="dog-price">
           <span id="dogValueSign3">$</span><span id="dogValue3"></span>
@@ -92,6 +96,7 @@
         <button class="dog-button--sell" onclick="sell(3)" disabled>Sell</button>
       </div>
     </div>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.8/pixi.min.js"></script>
     <script type="text/javascript" src="scripts/stage.js"></script>
     <script type="text/javascript" src="scripts/game.js"></script>

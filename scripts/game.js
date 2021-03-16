@@ -196,9 +196,10 @@ function nextDay() {
     stockDay += 1;
     if (stockDay > lastStockDay) {
         stockDay = lastStockDay;
+        document.getElementById("nextDayButton").disabled = true;
     }
-
     displayDay = stockDay + 1;
+    updateCharts(displayDay);
     display()
     console.log("current day: " + displayDay);
 }
@@ -267,9 +268,40 @@ function sell(index) {
     display();
 }
 
+//chart
+const charts = [
+    d3.select(".dog-chart--0"),
+    d3.select(".dog-chart--1"),
+    d3.select(".dog-chart--2"),
+    d3.select(".dog-chart--3"),
+];
+console.log(charts);
+const xscale = d3.scaleLinear()
+    .domain([0, 29]) // input
+    .range([0, 156]); // output
+
+function updateCharts(day) {
+    for (let i = 0; i < 4; i++) {
+        const yscale = d3.scaleLinear()
+            .domain([
+                Math.min.apply(null, dogValues[i]) - 100,
+                Math.max.apply(null, dogValues[i]) + 100]) // input 
+            .range([30, 0]); // output
+        const valueline = d3.line()
+            .x((d, id) => xscale(id))
+            .y(d => yscale(d));
+        charts[i].select("path.line").remove();
+        charts[i].append("path")
+            .data([dogValues[i].slice(0, day)])
+            .attr("class", "line")
+            .attr("d", valueline);
+    }
+}
+
 window.onload = () => {
     stage = new Stage();
     displayNews(1);
     display();
+    updateCharts(1);
 }
 //var intervalID = window.setInterval(display(), 500);

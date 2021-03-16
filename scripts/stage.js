@@ -4,8 +4,8 @@ class Stage {
     constructor() {
         // init PIXI app
         this.app = new PIXI.Application({
-            width: 580,
-            height: 400,
+            width: 590,
+            height: 480,
             backgroundColor: 0x1099bb,
             resolution: 1
         });

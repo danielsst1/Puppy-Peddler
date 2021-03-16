@@ -9,7 +9,7 @@ class Stage {
             backgroundColor: 0x1099bb,
             resolution: 1
         });
-        const container = document.querySelector('.c');
+        const container = document.querySelector('.canvas-container');
         container.appendChild(this.app.view);
 
         // loading textures

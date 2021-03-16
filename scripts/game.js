@@ -222,10 +222,24 @@ function display() {
         var val = dogVal + i.toString();
         var quant = dogQ + i.toString();
         //document.getElementById(name). innerHTML = dogs[i].getName();
-        document.getElementById(val). innerHTML = dogs[i].dailyValue(stockDay).toFixed(2);
-        document.getElementById(quant). innerHTML = dogs[i].getQuantity();
+        // buttons
+        const value = document.getElementById(val);
+        value.innerHTML = dogs[i].dailyValue(stockDay).toFixed(2);
+        const sign = document.getElementById(`dogValueSign${i}`);
+        const quantity = document.getElementById(quant)
+        quantity. innerText = dogs[i].getQuantity();
         buyButtons[i].disabled = dogs[i].dailyValue(stockDay) > currentMoney;
         sellButtons[i].disabled = dogs[i].quantity <= 0;
+        // price
+        if (stockDay >= 1) {
+            if (dogs[i].dailyValue(stockDay) >= dogs[i].dailyValue(stockDay - 1)) {
+                sign.classList.add("green");
+                sign.classList.remove("red");
+            } else {
+                sign.classList.add("red");
+                sign.classList.remove("green");
+            }
+        }
     }
 }
 

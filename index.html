@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=800, height=600, initial-scale=1.0">
     <title>Puppy Peddler</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
@@ -11,71 +12,91 @@
 
   <body>
     <div class="wrapper">
-      <div class="a">
+      <div class="info">
         <p>
           # Dogs: <span id="dogs"></span>
         </p>
         <p>
-          Current Money: <span id="money"></span>
+          $ <span id="money"></span>
         </p>          
       </div>
 
-      <div class="b">
+      <div class="forecasts">
         <p>
-          Day: <span id="day">Nothing yet. Click a tile.</span>
-          
+          Forecast
+          <p>
+            <span id="forecast1"></span>
+          </p>
+          <p>
+            <span id="forecast2"></span>
+          </p>
         </p>
-        <button onclick="nextDay()">Next Day</button> 
       </div>
-      <div class="c"></div>
-      <div class="d">
+
+      <div class="date">
         <p>
-          <span id="dogName0"></span>: $<span id="dogValue0"></span>
+          Day: <span id="day"></span> / 30
         </p>
-        <p>
-          Quantity: <span id="dogQuantity0"></span>
+        <button id="nextDayButton" onclick="nextDay()">Next Day</button>
+      </div>
+      <div class="canvas-container"></div>
+      <div class="dog-container dog-container--0">
+        <svg class="dog-chart dog-chart--0"></svg>
+        <div class="dog-icon dog-icon--0"></div>
+        <p class="dog-price">
+            <span id="dogValueSign0">$</span><span id="dogValue0"></span>
         </p>
-        <button onclick="buy(0)">Buy</button>
+        <p class="dog-quantity">
+            <span>&times;</span><span id="dogQuantity0"></span>
+        </p>
+        <button class="dog-button--buy" onclick="buy(0)" disabled>Buy</button>
         <!-- <input type="text" id="input0" size="5" placeholder=":)"> -->
-        <button onclick="sell(0)">Sell</button>
+        <button class="dog-button--sell" onclick="sell(0)" disabled>Sell</button>
       </div>
 
-      <div class="e">
-        <p>
-          <span id="dogName1"></span>: $<span id="dogValue1"></span>
+      <div class="dog-container dog-container--1">
+        <svg class="dog-chart dog-chart--1"></svg>
+        <div class="dog-icon dog-icon--1"></div>
+        <p class="dog-price">
+            <span id="dogValueSign1">$</span><span id="dogValue1"></span>
         </p>
-        <p>
-          Quantity: <span id="dogQuantity1"></span>
+        <p class="dog-quantity">
+          <span>&times;</span><span id="dogQuantity1"></span>
         </p>
-        <button onclick="buy(1)">Buy</button>
+        <button class="dog-button--buy" onclick="buy(1)" disabled>Buy</button>
         <!-- <input type="text" id="input1" size="5" placeholder=":)"> -->
-        <button onclick="sell(1)">Sell</button>
+        <button class="dog-button--sell" onclick="sell(1)" disabled>Sell</button>
       </div>
 
-      <div class="f">
-        <p>
-          <span id="dogName2"></span>: $<span id="dogValue2"></span>
+      <div class="dog-container dog-container--2">
+        <svg class="dog-chart dog-chart--2"></svg>
+        <div class="dog-icon dog-icon--2"></div>
+        <p class="dog-price">
+          <span id="dogValueSign2">$</span><span id="dogValue2"></span>
         </p>
-        <p>
-          Quantity: <span id="dogQuantity2"></span>
+        <p class="dog-quantity">
+            <span>&times;</span><span id="dogQuantity2"></span>
         </p>
-        <button onclick="buy(2)">Buy</button>
+        <button class="dog-button--buy" onclick="buy(2)" disabled>Buy</button>
         <!-- <input type="text" id="input2" size="5" placeholder=":)"> -->
-        <button onclick="sell(2)">Sell</button>
+        <button class="dog-button--sell" onclick="sell(2)" disabled>Sell</button>
       </div>
 
-      <div class="g">
-        <p>
-          <span id="dogName3"></span>: $<span id="dogValue3"></span>
+      <div class="dog-container dog-container--3">
+        <svg class="dog-chart dog-chart--3"></svg>
+        <div class="dog-icon dog-icon--3"></div>
+        <p class="dog-price">
+          <span id="dogValueSign3">$</span><span id="dogValue3"></span>
         </p>
-        <p>
-          Quantity: <span id="dogQuantity3"></span>
+        <p class="dog-quantity">
+            <span>&times;</span><span id="dogQuantity3"></span>
         </p>
-        <button onclick="buy(3)">Buy</button>
+        <button class="dog-button--buy" onclick="buy(3)" disabled>Buy</button>
         <!-- <input type="text" id="input3" size="5" placeholder=":)"> -->
-        <button onclick="sell(3)">Sell</button>
+        <button class="dog-button--sell" onclick="sell(3)" disabled>Sell</button>
       </div>
     </div>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.8/pixi.min.js"></script>
     <script type="text/javascript" src="scripts/stage.js"></script>
     <script type="text/javascript" src="scripts/game.js"></script>

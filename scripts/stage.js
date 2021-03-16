@@ -4,10 +4,12 @@ class Stage {
     constructor() {
         // init PIXI app
         this.app = new PIXI.Application({
+            width: 590,
+            height: 480,
             backgroundColor: 0x1099bb,
             resolution: 1
         });
-        const container = document.querySelector('.c');
+        const container = document.querySelector('.canvas-container');
         container.appendChild(this.app.view);
 
         // loading textures
@@ -61,7 +63,7 @@ class Stage {
             this.spriteSheet[`lay-${i}`] = [
                 new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 3, H * 3, W, H))
             ];
-            this.spriteSheet[`walk${i}`] = [
+            this.spriteSheet[`walk-${i}`] = [
                 new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 4, H * 3, W, H)),
                 new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + 0, H * 4, W, H)),
                 new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W, H * 4, W, H)),
@@ -79,6 +81,7 @@ class Stage {
         doggy.animationSpeed = .2;
         doggy.x = genRandomFloat(50, this.app.view.width - 50);
         doggy.y = genRandomFloat(50, this.app.view.height - 50);
+        if (Math.random() < 0.5) { doggy.scale.x = -4; }
         // drag drop
         doggy.interactive = true;
         doggy.buttonMode = true;

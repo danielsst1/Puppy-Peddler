@@ -63,7 +63,7 @@ class Stage {
             this.spriteSheet[`lay-${i}`] = [
                 new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 3, H * 3, W, H))
             ];
-            this.spriteSheet[`walk${i}`] = [
+            this.spriteSheet[`walk-${i}`] = [
                 new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W * 4, H * 3, W, H)),
                 new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + 0, H * 4, W, H)),
                 new PIXI.Texture(ssheet, new PIXI.Rectangle(offset + W, H * 4, W, H)),

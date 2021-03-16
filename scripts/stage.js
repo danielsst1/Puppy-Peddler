@@ -81,6 +81,7 @@ class Stage {
         doggy.animationSpeed = .2;
         doggy.x = genRandomFloat(50, this.app.view.width - 50);
         doggy.y = genRandomFloat(50, this.app.view.height - 50);
+        if (Math.random() < 0.5) { doggy.scale.x = -4; }
         // drag drop
         doggy.interactive = true;
         doggy.buttonMode = true;

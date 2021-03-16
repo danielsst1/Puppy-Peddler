@@ -104,23 +104,26 @@ canvas {
 }
 .dog-icon {
   display: inline-block;
-  grid-column: 1;
   background-image: url('../assets/sprites/doggy.png');
   width: 25px;
   height: 19px;
   image-rendering: pixelated;
 }
+.dog-container .dog-icon {
+  grid-column: 1;
+}
+
 .dog-icon--0 {
   background-position: 0 0;
 }
 .dog-icon--1 {
-  background-position: 125px 0;
+  background-position: 375px 0;
 }
 .dog-icon--2 {
   background-position: 250px 0;
 }
 .dog-icon--3 {
-  background-position: 375px 0;
+  background-position: 125px 0;
 }
 
 .dog-price {

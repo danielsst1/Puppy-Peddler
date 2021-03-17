@@ -300,6 +300,7 @@ var isMuted = true;
 var un_mute = document.getElementById('un-mute');
 var background = document.getElementById("backgroundAudio");
 background.volume = 0.2;
+background.loop = true;
 
 un_mute.onclick = function() {
 		isMuted = !isMuted;

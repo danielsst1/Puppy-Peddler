@@ -14,11 +14,13 @@ html {
 body {
   font-size: 1.6rem;
   letter-spacing: 0;
+  width: 100%;
   min-height: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: "VT323", monospace;
   background-color: #1099bb;
+  position: relative;
 }
 
 .a,
@@ -209,8 +211,22 @@ button:active {
 }
 
 /*mute and unmute button*/
+.audio-container {
+  grid-area: c;
+  width: 35px;
+  height: 35px;
+  z-index: 2;
+  transform: translateY(430px);
+}
+
 input#un-mute {
     display: none;
+}
+
+img {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
 }
 
 .unmute img {

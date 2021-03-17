@@ -296,11 +296,21 @@ function updateCharts(day) {
 }
 
 //mute and unmute control
-/*var un_mute = document.getElementById('un-mute');
+var isMuted = true;
+var un_mute = document.getElementById('un-mute');
+var background = document.getElementById("backgroundAudio");
+background.volume = 0.2;
 
 un_mute.onclick = function() {
-    alert('toggle player here');
-};*/
+		isMuted = !isMuted;
+		if(!isMuted) {
+			background.play();
+		}
+		else {
+			background.pause();
+		}
+    //alert('toggle player here');
+};
 
 window.onload = () => {
     stage = new Stage();
